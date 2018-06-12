@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser =require('body-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
@@ -21,5 +21,20 @@ let animals = [
 ]
 
 const port = 3000;
+
+app.get('/animals', (req, res) => {
+  res.send(animals);
+}),
+
+app.post('/animals', (req, res) => {
+  console.log("this is req.body", req.body)
+  animals.push(req.body);
+  res.send(animals);
+}),
+
+app.delete('/animals' (req, res) => {
+  animals.delete(req.body);
+  console.log('deleted animals');
+}),
 
 app.listen( port, () => { console.log(`Server listening on ${port}`); } );
